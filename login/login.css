@@ -198,13 +198,13 @@ button:active{
 
 .footerTitle{
     margin-bottom:2px;
-    font-size:14px;
+    font-size:15px;
     font-weight:bold;
     color:#555;
 }
 
 .footerInfo a{
-    font-size:18px;
+    font-size:20px;
     font-weight:bold;
     color:#1976D2;
     text-decoration:none;
@@ -216,6 +216,6 @@ button:active{
 
 .footerManager{
     margin-top:10px;
-    font-size:12px;
+    font-size:12.5px;
     color:#777;
 }

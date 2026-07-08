@@ -18,7 +18,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-database.js";
 
 import { createId, getCurrentDate, getCurrentTime
-} from "../utils.js";
+} from "./utils.js";
 
 // firebase설정
 const firebaseConfig = {
