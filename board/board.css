@@ -1,0 +1,117 @@
+/*board.cdd*/
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+
+
+/* 기본 설정 */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Pretendard", sans-serif;
+}
+
+body{
+    background:#FFF7FA;
+}
+
+.container{
+    width:100%;
+    max-width:430px;
+    margin:0 auto;
+    padding:20px 15px 30px;
+}
+
+
+/* 상단 */
+.header{
+    margin-bottom:20px;
+}
+
+.hello{
+    font-size:15px;
+    color:#666;
+    margin-bottom:5px;
+}
+
+#nickname{
+    font-size:30px;
+    color:#333;
+    margin-bottom:18px;
+}
+
+.statusBox{
+    display:flex;
+    gap:10px;
+}
+
+.statusItem{
+    flex:1;
+    background:#FFFFFF;
+    border-radius:12px;
+    padding:12px 8px;
+    text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.statusTitle{
+    display:block;
+    font-size:12px;
+    color:#888;
+    margin-bottom:6px;
+}
+
+.statusItem strong{
+    display:block;
+    font-size:18px;
+    color:#FF4F93;
+}
+
+
+/* 보드 */
+.boardBox{
+    position:relative;
+    width:100%;
+    margin:20px 0;
+}
+
+.boardImage{
+    width:100%;
+    display:block;
+}
+
+.playerPin{
+    position:absolute;
+    width:34px;
+    left:0;
+    top:0;
+    transform:translate(-50%,-80%);
+    z-index:100;
+    pointer-events:none;
+}
+
+
+/* 버튼 */
+#diceBtn{
+    width:100%;
+    height:56px;
+    border:none;
+    border-radius:12px;
+    background:#FF4F93;
+    color:#FFFFFF;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+}
+
+#diceBtn:hover{
+    background:#F23C86;
+}
+
+
+/* 10시간 제한 상태 */
+#diceBtn.cooldown{
+    background:#D9D9D9;
+    color:#777777;
+}

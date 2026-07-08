@@ -1,0 +1,194 @@
+<!--board.html-->
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>으차방 보드게임</title>
+
+    <link rel="stylesheet" href="board.css">
+    <link rel="stylesheet" href="../dice/dice.css">
+    <link rel="stylesheet" href="popup.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+
+        <!-- 상단 정보 -->
+        <div class="header">
+
+            <p class="hello">
+                안녕하세요!
+            </p>
+
+            <h2 id="nickname">
+                닉네임님
+            </h2>
+
+            <div class="statusBox">
+
+                <div class="statusItem">
+
+                    <span class="statusTitle">
+                        현재 위치
+                    </span>
+
+                    <strong id="position">
+                        0번
+                    </strong>
+
+                </div>
+
+                <div class="statusItem">
+
+                    <span class="statusTitle">
+                        벙참 날짜
+                    </span>
+
+                    <strong id="joinDate">
+                        7월 6일
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 보드 -->
+        <div class="boardBox">
+
+            <img
+                src="../images/board/board.jpg"
+                id="boardImage"
+                class="boardImage"
+                alt="보드판">
+
+            <img
+                src="../images/board/marker.webp"
+                id="playerPin"
+                class="playerPin"
+                alt="말">
+
+        </div>
+
+
+        <!-- 버튼 -->
+        <button id="diceBtn">
+            주사위 굴리기
+        </button>
+
+    </div>
+
+
+    <!-- 주사위 모달 -->
+    <div id="diceModal" class="modal hidden">
+
+        <div class="diceBox">
+
+            <div class="scene">
+
+                <div id="dice" class="cube">
+                                        <div class="face front">
+                        <img src="../images/dice/dice1.png" alt="">
+                    </div>
+
+                    <div class="face back">
+                        <img src="../images/dice/dice6.png" alt="">
+                    </div>
+
+                    <div class="face right">
+                        <img src="../images/dice/dice3.png" alt="">
+                    </div>
+
+                    <div class="face left">
+                        <img src="../images/dice/dice4.png" alt="">
+                    </div>
+
+                    <div class="face top">
+                        <img src="../images/dice/dice5.png" alt="">
+                    </div>
+
+                    <div class="face bottom">
+                        <img src="../images/dice/dice2.png" alt="">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p id="diceResult">
+                주사위를 굴리는 중...
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- 이벤트 팝업 -->
+
+    <div id="specialModal" class="specialModal hidden">
+
+        <div class="specialBox">
+
+            <img
+                id="specialImage"
+                src=""
+                alt="특별칸">
+
+            <p id="specialMessage"></p>
+
+            <button id="specialCloseBtn">
+                확인
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- 복권 팝업 -->
+
+    <div id="lotteryModal" class="specialModal hidden">
+
+        <div class="specialBox">
+
+            <h2>으랏차차 행운복권</h2>
+
+            <div
+                id="lotteryNumber"
+                style="
+                    font-size:80px;
+                    font-weight:bold;
+                    color:#ff4f91;
+                    margin:25px 0;
+                ">
+                ?
+            </div>
+
+            <p id="lotteryMessage">
+                복권을 긁어보세요!
+            </p>
+
+            <button id="lotteryBtn">
+                복권 긁기
+            </button>
+
+        </div>
+
+    </div>
+
+    <script type="module" src="board.js"></script>
+
+</body>
+
+</html>
