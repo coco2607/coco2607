@@ -17,11 +17,9 @@
     <link rel="stylesheet" href="popup.css">
 
 </head>
-
 <body>
 
     <div class="container">
-
 
         <!-- 상단 정보 -->
         <div class="header">
@@ -37,7 +35,6 @@
             <div class="statusBox">
 
                 <div class="statusItem">
-
                     <span class="statusTitle">
                         현재 위치
                     </span>
@@ -45,11 +42,19 @@
                     <strong id="position">
                         0번
                     </strong>
-
                 </div>
 
                 <div class="statusItem">
+                    <span class="statusTitle">
+                        누적 포인트
+                    </span>
 
+                    <strong id="totalPoint">
+                        0P
+                    </strong>
+                </div>
+
+                <div class="statusItem">
                     <span class="statusTitle">
                         벙참 날짜
                     </span>
@@ -57,13 +62,11 @@
                     <strong id="joinDate">
                         7월 6일
                     </strong>
-
                 </div>
 
             </div>
 
         </div>
-
 
         <!-- 보드 -->
         <div class="boardBox">
@@ -82,14 +85,31 @@
 
         </div>
 
-
         <!-- 버튼 -->
         <button id="diceBtn">
             주사위 굴리기
         </button>
 
-    </div>
+        <!-- 하단 안내 -->
+        <div class="footerInfo">
 
+            <div class="footerTitle">
+                카카오톡 오픈채팅
+            </div>
+
+            <a
+                href="https://open.kakao.com/o/g7b2DGti"
+                target="_blank">
+                8090 으차방
+            </a>
+
+            <div class="footerManager">
+                운영관리담당 : 코코
+            </div>
+
+        </div>
+
+    </div>
 
     <!-- 주사위 모달 -->
     <div id="diceModal" class="modal hidden">
@@ -99,7 +119,8 @@
             <div class="scene">
 
                 <div id="dice" class="cube">
-                                        <div class="face front">
+
+                    <div class="face front">
                         <img src="../images/dice/dice1.png" alt="">
                     </div>
 
@@ -136,7 +157,6 @@
     </div>
 
     <!-- 이벤트 팝업 -->
-
     <div id="specialModal" class="specialModal hidden">
 
         <div class="specialBox">
@@ -157,7 +177,6 @@
     </div>
 
     <!-- 복권 팝업 -->
-
     <div id="lotteryModal" class="specialModal hidden">
 
         <div class="specialBox">
@@ -190,5 +209,3 @@
     <script type="module" src="board.js"></script>
 
 </body>
-
-</html>

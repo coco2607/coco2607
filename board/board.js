@@ -2,12 +2,13 @@
 
 import "../dice/dice.js";
 import { updateMarker } from "./move.js";
-import { getLast } from "./boardFirebase.js";
+import { getUser } from "./boardFirebase.js";
 import { checkSpecial } from "./special.js";
 
 // 요소 가져오기
 const nickname = document.getElementById("nickname");
 const joinDate = document.getElementById("joinDate");
+const totalPoint = document.getElementById("totalPoint");
 
 // 초기 실행
 loadPlayer();
@@ -30,7 +31,8 @@ async function loadPlayer() {
     }
 
     // Firebase에서 마지막 도착 위치 가져오기
-    const playerPosition = await getLast(playerName);
+    const user = await getUser(playerName);
+    const playerPosition = user.last || 0;
 
     // 가져온 위치 저장
     sessionStorage.setItem(
@@ -40,6 +42,7 @@ async function loadPlayer() {
 
     // 말 이동 표시
     updateMarker(Number(playerPosition) || 0);
+    totalPoint.textContent = `${user.totalP || 0}P`;
 }
 
 
