@@ -61,8 +61,8 @@ export async function saveDiceResult(data) {
         currentTotal = snapshot.val().totalP || 0;
     }
 
-    // 새로운 totalP 계산
-    const newTotal = currentTotal + data.tpoint;
+    // 새로운 totalP 계산 최대 40점까지
+    const newTotal = Math.min(currentTotal + data.tpoint, 40);
 
     // 현재 상태 저장
     await update(userRef, {
