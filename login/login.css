@@ -1,11 +1,10 @@
-/*login.css*/
+/* login.css */
 
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 
 /* ===========================
    기본 설정
 =========================== */
-
 *{
     margin:0;
     padding:0;
@@ -14,55 +13,49 @@
 }
 
 body{
-    background:#FFF7FA;
     min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
+
     padding:20px;
     padding-bottom:120px;
+
+    background:#FFF7FA;
 }
 
 
 /* ===========================
    접속 화면
 =========================== */
-
 .container{
     width:100%;
-    max-width:240px;   /* 220~260px 정도 추천 */
+    max-width:240px;
     text-align:center;
 }
 
 h1{
+    margin-bottom:20px;
+
     font-size:34px;
     color:#333;
-    margin-bottom:20px;
 }
-
-.subTitle{
-    font-size:16px;
-    color:#666;
-    margin-bottom:20px;
-}
-
 
 /* ===========================
-   입력창
+   닉네임 입력창
 =========================== */
-
 input{
     width:100%;
     height:46px;
 
     padding:0 16px;
-    margin-bottom:18px;
-    
+    margin-bottom:12px;
+
     border:1px solid #CCC;
     border-radius:12px;
 
     outline:none;
-    
+
     background:#FFF;
     font-size:16px;
 }
@@ -75,35 +68,47 @@ input:focus{
 /* ===========================
    공통 버튼
 =========================== */
-
 button{
     width:100%;
-    height:46px;
+    height:52px;
+
     border:none;
-    border-radius:10px;
+    border-radius:12px;
+
     background:#FF4F93;
     color:#FFF;
-    font-size:17px;
+
+    font-size:18px;
     font-weight:bold;
+
     cursor:pointer;
+
+    transition:.2s;
+}
+
+button:hover{
+    background:#F13F86;
 }
 
 button:active{
-    background:#E43D81;
+    background:#D93474;
 }
 
 
 /* ===========================
    로그인 모달
 =========================== */
-
 .modal{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.45);
+
     display:flex;
     justify-content:center;
     align-items:center;
+
+    background:rgba(0,0,0,.4);
+
+    z-index:9999;
 }
 
 .hidden{
@@ -113,28 +118,29 @@ button:active{
 .modalBox{
     width:90%;
     max-width:330px;
+
     padding:25px;
+
     background:#FFF;
     border-radius:15px;
+
     text-align:center;
 }
 
 .modalBox h2{
-    margin-bottom:40px;
+    margin-bottom:14px;/*제목과 입력창*/
+    color:#ff438b;
+    font-weight:bold;
 }
 
 .modalBox input{
-    margin-bottom:10px;
+    margin-bottom:8px;
 }
-
-
-/* ===========================
-   로그인 모달 버튼
-=========================== */
 
 .modalButton{
     display:flex;
-    gap:8px;
+    gap:10px;
+    margin-top:-8px;
 }
 
 .modalButton button{
@@ -157,40 +163,65 @@ button:active{
 
 
 /* ===========================
-   날짜 선택 버튼
+   날짜 선택 모달
 =========================== */
+.modalBox h3{
+    font-size:20px;
+    margin-bottom:18px;/*제목과 날짜버튼*/
+    color:#444;
+    font-weight:bold;
+}
 
 .dateButton{
     display:flex;
     flex-direction:column;
+    align-items:center;
     gap:10px;
 }
 
 .dateButton button{
-    width:100%;
+    width:95%;
 }
 
 
 /* ===========================
+   경고(알림) 모달
+=========================== */
+.warningBox{
+    width:90%;
+    max-width:330px;   /* 로그인 모달과 동일 */
+}
+
+#warningText{
+    color:#444;
+    font-size:16px;
+    line-height:1.6;
+    word-break:keep-all;
+}
+
+#warningOk{
+    margin-top:24px;
+}
+
+/* ===========================
    로그인 메시지
 =========================== */
-
 #loginMessage{
-    min-height:20px;
+    font-size:14px;    
     margin-bottom:15px;
-    color:red;
-    font-size:14px;
+    color:#FF0000;
+    font-weight:350;
 }
 
 
 /* ===========================
    하단 안내
 =========================== */
-
 .footerInfo{
     position:fixed;
     left:0;
     bottom:0;
+
     width:100%;
 
     padding:16px;
@@ -203,15 +234,16 @@ button:active{
 
 .footerTitle{
     margin-bottom:2px;
+
+    color:#555;
     font-size:15px;
     font-weight:bold;
-    color:#555;
 }
 
 .footerInfo a{
+    color:#1976D2;
     font-size:20px;
     font-weight:bold;
-    color:#1976D2;
     text-decoration:none;
 }
 
@@ -226,11 +258,11 @@ button:active{
     justify-content:space-between;
     align-items:center;
 
-    font-size:14px;
     color:#777;
+    font-size:13px;
 }
 
 .version{
-    font-size:14px;
     color:#999;
+    font-size:13px;
 }

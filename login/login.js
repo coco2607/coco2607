@@ -14,7 +14,9 @@ const loginMessage = document.getElementById("loginMessage");
 const dateModal = document.getElementById("dateModal");
 const todayBtn = document.getElementById("todayBtn");
 const yesterdayBtn = document.getElementById("yesterdayBtn");
-
+const warningModal = document.getElementById("warningModal");
+const warningText = document.getElementById("warningText");
+const warningOk = document.getElementById("warningOk");
 
 // 초기 실행
 setDateButton();
@@ -40,14 +42,14 @@ function openLoginModal() {
     const name = trim(nickname.value);
 
     if (name === "") {
-        alert("닉네임 2자를 입력하세요.");
+        showWarning("닉네임 2자를 입력하세요.");
         nickname.focus();
         return;
     }
 
     // 한글 2자만 허용
     if (!/^[가-힣]{2}$/.test(name)) {
-        alert("닉네임은 2자만 입력 가능합니다.");
+        showWarning("닉네임 2자를 입력하세요.");
         nickname.focus();
         nickname.select();
         return;
@@ -159,3 +161,13 @@ function formatDate(date) {
 
     return `${year}-${month}-${day}`;
 }
+
+// 경고 모달
+function showWarning(message){
+    warningText.textContent = message;
+    warningModal.classList.remove("hidden");
+}
+
+warningOk.addEventListener("click", () => {
+    warningModal.classList.add("hidden");
+});
