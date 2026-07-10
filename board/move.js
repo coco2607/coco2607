@@ -7,8 +7,11 @@ import {
 } from "./special.js";
 import { saveDiceResult } from "../dice/diceFirebase.js";
 
+
 const playerPin = document.getElementById("playerPin");
 const positionText = document.getElementById("position");
+
+let needRefreshPoint = false;
 
 let reward = {
     normal:"",
@@ -17,7 +20,6 @@ let reward = {
     specialPoint:0,
     tpoint:0
 };
-
 
 // 말 이동
 export async function movePlayer(step) {
@@ -82,7 +84,9 @@ export async function movePlayer(step) {
         tpoint: reward.tpoint
 
     });
-    
+
+    needRefreshPoint = true;
+
 }
 
 // 말 위치

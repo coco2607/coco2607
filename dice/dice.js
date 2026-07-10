@@ -9,11 +9,26 @@ const dice = document.getElementById("dice");
 const diceBtn = document.getElementById("diceBtn");
 const diceModal = document.getElementById("diceModal");
 const diceResult = document.getElementById("diceResult");
+const alertModal = document.getElementById("alertModal");
+const alertMessage = document.getElementById("alertMessage");
+const alertCloseBtn = document.getElementById("alertCloseBtn");
 
 let rolling = false;
 
+function showAlert(message) {
+    alertMessage.textContent = message;
+    alertModal.classList.remove("hidden");
+}
+
+function hideAlert() {
+    alertModal.classList.add("hidden");
+}
+
+
 // 이벤트
 diceBtn.addEventListener("click", rollDice);
+alertCloseBtn.addEventListener("click", hideAlert);
+
 
 // 주사위 굴리기
 async function rollDice() {
@@ -24,10 +39,12 @@ async function rollDice() {
         await checkRollAvailable();
     } catch (err) {
         console.error(err);
-        alert(err.message);
+
+        showAlert(err.message);
+
         return;
     }
-
+    
     rolling = true;
     diceBtn.disabled = true;
     diceModal.classList.remove("hidden");
@@ -72,7 +89,7 @@ async function rollDice() {
         rolling = false;
         diceBtn.disabled = false;
         diceBtn.classList.add("cooldown");
-    }, 2500);
+    }, 3000);
 }
 
 

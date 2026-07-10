@@ -45,6 +45,16 @@ async function loadPlayer() {
     totalPoint.textContent = `${user.totalP || 0}P`;
 }
 
+// 누적포인트 새로고침
+window.refreshTotalPoint = async function () {
+
+    const playerName = sessionStorage.getItem("nickname");
+
+    const user = await getUser(playerName);
+
+    totalPoint.textContent = `${user.totalP || 0}P`;
+
+};
 
 // 테스트용 강제 이동
 window.testMove = function(position){

@@ -23,3 +23,4 @@ export async function getUser(nickname) {
     return snapshot.val();
 
 }
+

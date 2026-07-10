@@ -66,7 +66,7 @@ export function checkSpecial(position) {
                 "여기까지 온다고 고생함<br>+2 포인트",
                 "고생했으니 포인트 받아랏!<br>+2 포인트",
                 "으차방 벙신으로 임명함<br>+2 포인트",
-                "1바퀴 완주? 주사위6만 나왔나베<br>+2 포인트"
+                "1바퀴 완주? 큰 숫자만 나왔나베<br>+2 포인트"
                 ][Math.floor(Math.random() * 4)],
                 "bank.jpg"
             );

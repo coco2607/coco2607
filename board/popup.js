@@ -23,9 +23,13 @@ export function showPopup(message, image, type = "") {
         button.textContent = "확인";
     }
 
-    button.onclick = function () {
+    button.onclick = async function () {
 
         modal.classList.add("hidden");
+
+        if (window.refreshTotalPoint) {
+            await window.refreshTotalPoint();
+        }
 
         if (type === "lottery") {
             showLotteryPopup();
@@ -99,8 +103,14 @@ export function showLotteryPopup() {
                 button.style.display = "inline-block";
                 button.textContent = "확인";
 
-                button.onclick = function () {
+                button.onclick = async function () {
+
                     modal.classList.add("hidden");
+
+                    if (window.refreshTotalPoint) {
+                        await window.refreshTotalPoint();
+                    }
+
                 };
 
             } else {

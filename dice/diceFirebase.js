@@ -97,7 +97,8 @@ export async function checkRollAvailable() {
             const minute = Math.floor((remain % 3600000) / 60000);
 
             throw new Error(
-                `${hour}시간 ${minute}분 후 다시 주사위를 굴릴 수 있습니다.`
+                `주사위는 벙참 당일에 1번만 가능합니다.\n(하루에 기회 1번! 중복으로 굴릴 수 없음)`
+                // ${hour}시간 ${minute}분 후 다시 주사위를 굴릴 수 있습니다.
             );
         }
     }
