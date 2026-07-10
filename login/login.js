@@ -42,7 +42,7 @@ function openLoginModal() {
     const name = trim(nickname.value);
 
     if (name === "") {
-        showWarning("닉네임 2자를 입력하세요.");
+        showWarning("닉네임을 입력하세요.");
         nickname.focus();
         return;
     }
