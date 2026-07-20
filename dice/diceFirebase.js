@@ -15,8 +15,21 @@ import {
 } from "../utils.js";
 
 
-const ROLL_LIMIT = 10 * 60 * 60 * 1000;// 주사위제한시간
 const HISTORY = "history";
+
+
+// 주사위 제한시간 가져오기
+async function getDiceCooldown() {
+
+    const snapshot = await get(ref(db, "access/diceCooldown"));
+
+    if (!snapshot.exists()) {
+        return 10 * 60 * 60 * 1000; // 기본값 10시간
+    }
+
+    return Number(snapshot.val());
+}
+
 
 // 주사위 결과 저장
 export async function saveDiceResult(data) {
@@ -79,26 +92,31 @@ export async function saveDiceResult(data) {
 export async function checkRollAvailable() {
 
     const nickname = sessionStorage.getItem("nickname");
-    const snapshot = await get(ref(db, `users/${nickname}`));
 
-    if (!snapshot.exists()) return;
+    // 사용자 정보와 쿨타임을 동시에 읽기
+    const [userSnapshot, rollLimit] = await Promise.all([
+        get(ref(db, `users/${nickname}`)),
+        getDiceCooldown()
+    ]);
 
-    const user = snapshot.val();
+    if (!userSnapshot.exists()) return;
+
+    const user = userSnapshot.val();
     const lastRoll = user.lastRoll || 0;
 
     if (lastRoll > 0) {
 
         const diff = Date.now() - lastRoll;
 
-        if (diff < ROLL_LIMIT) {
+        if (diff < rollLimit) {
 
-            const remain = ROLL_LIMIT - diff;
+            const remain = rollLimit - diff;
             const hour = Math.floor(remain / 3600000);
             const minute = Math.floor((remain % 3600000) / 60000);
 
             throw new Error(
-                `주사위는 벙참 당일에 1번만 가능합니다.\n(하루에 기회 1번! 중복으로 굴릴 수 없음)`
-                // ${hour}시간 ${minute}분 후 다시 주사위를 굴릴 수 있습니다.
+                //`주사위는 벙참 당일에 1번만 가능합니다.\n(하루에 기회 1번! 중복으로 굴릴 수 없음)`
+                `${hour}시간 ${minute}분 후 다시 주사위를 굴릴 수 있습니다.`
             );
         }
     }

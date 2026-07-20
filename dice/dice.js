@@ -100,7 +100,7 @@ async function checkDiceButton() {
         // 주사위 가능
         diceBtn.classList.remove("cooldown");
     } catch(err) {
-        // 10시간 제한 중
+        // 주사위 사용 불가
         diceBtn.classList.add("cooldown");
     }
 }
