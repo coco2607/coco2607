@@ -4,6 +4,7 @@ import "../dice/dice.js";
 import { updateMarker } from "./move.js";
 import { getUser } from "./boardFirebase.js";
 import { checkSpecial } from "./special.js";
+import { joinUser } from "../login/loginFirebase.js";
 
 // 요소 가져오기
 const nickname = document.getElementById("nickname");
@@ -16,7 +17,9 @@ loadPlayer();
 // 플레이어 정보 불러오기
 async function loadPlayer() {
 
-    const playerName = sessionStorage.getItem("nickname");
+    const nickname = sessionStorage.getItem("nickname");
+    await joinUser(nickname);
+
     const playerJoinDate = sessionStorage.getItem("joinDate");
 
     nickname.textContent = `${playerName || "닉네임"}님`;

@@ -79,6 +79,7 @@ export async function saveDiceResult(data) {
 
     // 현재 상태 저장
     await update(userRef, {
+        date:data.date,
         lastRoll: Date.now(),
         joinDate: data.joinDate,
         last: data.end,

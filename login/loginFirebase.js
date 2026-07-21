@@ -36,8 +36,6 @@ export async function login(nickname, password) {
         throw new Error("비밀번호가 올바르지 않습니다.");
     }
 
-    await joinUser(nickname);
-
     return true;
 }
 
@@ -54,7 +52,7 @@ async function checkAccess(password) {
 
 
 // 닉네임 중복 확인 및 접속 등록
-async function joinUser(nickname) {
+export async function joinUser(nickname) {
     myNickname = nickname;
 
     const nicknameRef = ref(db, `nicknames/${nickname}`);

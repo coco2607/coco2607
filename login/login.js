@@ -2,6 +2,11 @@
 
 import { login } from "./loginFirebase.js";
 import { trim, pad } from "../utils.js";
+import {
+    db,
+    ref,
+    get
+} from "../firebase.js";
 
 // 요소 가져오기
 const nickname = document.getElementById("nickname");
@@ -35,6 +40,12 @@ memberPassword.addEventListener("keydown", function (e) {
     }
 });
 
+// 날짜 선택 모달 바깥 클릭 시 닫기
+dateModal.addEventListener("click", (e) => {
+    if (e.target === dateModal) {
+        dateModal.classList.add("hidden");
+    }
+});
 
 // 입장하기
 function openLoginModal() {
@@ -93,18 +104,47 @@ async function checkPassword() {
 
 
 // 오늘 선택
-function selectToday() {
-    enterGame(getToday());
+async function selectToday() {
+    await checkJoinDate(getToday());
 }
 
 
 // 어제 선택
-function selectYesterday() {
+async function selectYesterday() {
 
     const date = new Date();
     date.setDate(date.getDate() - 1);
 
-    enterGame(formatDate(date));
+    await checkJoinDate(formatDate(date));
+}
+
+// joinDate 확인
+async function checkJoinDate(joinDate) {
+
+    const name = nickname.value.trim();
+
+    const snapshot = await get(ref(db, `users/${name}`));
+
+    if (!snapshot.exists()) {
+        showWarning("회원 정보를 찾을 수 없습니다.");
+        return;
+    }
+
+    const user = snapshot.val();
+
+    // 이미 해당 날짜로 주사위를 굴림
+    if (user.joinDate === joinDate) {
+        showWarning("보드게임은 하루에 1번 참여할 수 있습니다.");
+        return;
+    }
+
+    // 마지막 벙참 날짜보다 이전 날짜는 선택 불가
+    if (user.joinDate && joinDate < user.joinDate) {
+        showWarning("보드게임에 참여할 수 없는 날짜 입니다.");
+        return;
+    }
+
+    enterGame(joinDate);
 }
 
 
