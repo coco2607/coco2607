@@ -149,11 +149,13 @@ async function checkJoinDate(joinDate) {
 
 
 // 게임 입장
-function enterGame(joinDate) {
+async function enterGame(joinDate) {
 
-    console.log("저장할 닉네임 :", nickname.value.trim());
+    const playerName = nickname.value.trim();
 
-    sessionStorage.setItem("nickname", nickname.value.trim());
+    console.log("저장할 닉네임 :", playerName);
+
+    sessionStorage.setItem("nickname", playerName);
     sessionStorage.setItem("joinDate", joinDate);
     sessionStorage.setItem("point", 0);
     sessionStorage.setItem("position", 0);

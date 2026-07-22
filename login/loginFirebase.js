@@ -9,11 +9,9 @@ import {
     runTransaction,
     serverTimestamp
 } from "../firebase.js";
-import { trim, createId } from "../utils.js";
+import { trim } from "../utils.js";
 
-const USERS = "users";
-const myConnectionId = createId();
-let myNickname = "";
+const PLAYER = "player";
 
 
 // 로그인확인
@@ -53,35 +51,26 @@ async function checkAccess(password) {
 
 // 닉네임 중복 확인 및 접속 등록
 export async function joinUser(nickname) {
-    myNickname = nickname;
 
-    const nicknameRef = ref(db, `nicknames/${nickname}`);
+    const playerRef = ref(db, `player/${nickname}`);
 
     const result = await runTransaction(
-        nicknameRef,
+        playerRef,
         current => {
-
             if (current === null) {
-                return myConnectionId;
+
+                return {
+                    joinTime: Date.now()
+                };
             }
-
             return;
-
         }
     );
 
     if (!result.committed) {
-        throw new Error("이미 사용 중인 닉네임입니다.");
+        throw new Error("이미 접속중 입니다.");
     }
 
-    const userRef = ref(db, `${USERS}/${myConnectionId}`);
-
-    await set(userRef, {
-        nickname,
-        joinTime: serverTimestamp()
-    });
-
-    onDisconnect(userRef).remove();
-    onDisconnect(nicknameRef).remove();
+    await onDisconnect(playerRef).remove();
 
 }

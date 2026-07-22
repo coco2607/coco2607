@@ -12,14 +12,33 @@ const joinDate = document.getElementById("joinDate");
 const totalPoint = document.getElementById("totalPoint");
 
 // 초기 실행
-loadPlayer();
+init();
+
+async function init() {
+
+    const playerName = sessionStorage.getItem("nickname");
+
+    try {
+        // 접속 중인지 확인 및 접속 등록
+        await joinUser(playerName);
+
+        // 플레이어 정보 불러오기
+        await loadPlayer();
+
+    } catch (err) {
+
+        alert(err.message);
+
+        location.href = "../login/login.html";
+
+    }
+
+}
 
 // 플레이어 정보 불러오기
 async function loadPlayer() {
 
-    const nickname = sessionStorage.getItem("nickname");
-    await joinUser(nickname);
-
+    const playerName = sessionStorage.getItem("nickname");
     const playerJoinDate = sessionStorage.getItem("joinDate");
 
     nickname.textContent = `${playerName || "닉네임"}님`;
